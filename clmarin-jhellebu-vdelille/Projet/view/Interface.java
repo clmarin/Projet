@@ -19,9 +19,7 @@ public class Interface  {
 	private CardLayout card;
 	private BoardGame boardgame;
 	private Game game;
-	private GamePlay gamePlay;
 	private Arena arena;
-	
 	private GameBoard carte;
 	private  List<IHero> heros;
 	private List<IPotion> potions;
@@ -34,7 +32,7 @@ public class Interface  {
 		this.potions = game.getPotions();
 		this.superPotions = game.getSuperPotions();
 		// Window
-		window = new JFrame("Blabla");
+		window = new JFrame("Projet INFO-H-200 : Vi Tching de Lille, Julie Hellebuyck, Clémentine Marin");
 		window.setSize(400, 300);
 		window.setLocationRelativeTo(null);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -43,7 +41,6 @@ public class Interface  {
 		// Menu + Rules
 		rules = new Rules(this);
 		menu = new Menu(game, this);	
-		//arena
 		arena = new Arena(game, this);
 		//card
 		card = new CardLayout();
@@ -57,14 +54,19 @@ public class Interface  {
 	
 	
 	public  void ConstructGame(){
-		this.gamePlay = game.getGamePlay();
-		carte = gamePlay.getCarte(); 
-		heros = gamePlay.getHero();
+		carte = game.getGamePlay().getCarte(); 
+		heros = game.getGamePlay().getHero();
 		
-		boardgame = new BoardGame(gamePlay);
+		boardgame = new BoardGame(game.getGamePlay());
 		HeroListener heroListener = new HeroListener(game, this, boardgame);
 		boardgame.addKeyListener(heroListener); 
 		cards.add(boardgame, "GAMEPLAY");
+	}
+	
+	public void ConstructArena(){
+		arena = new Arena(game, this);
+		cards.add(arena, "ARENA");
+		
 	}
 		
 	public void changePanel(String sen) {

@@ -21,15 +21,15 @@ public class GamePlay implements InterfaceObservable, Runnable, GamePlayObservab
 	private GameBoard carte;
 	private List<ICreature> monsters;
 	private  List<IHero> heros;
-	private int inthero = 0;
 	private List<IPotion> potions;
 	private List<IPotion> superPotions;
 	private String gameState= "map";
 	private Interface inter;
 	private Tournament tournament;
-	private boolean bool;
-	private int intindexhero;
+	private int inthero =0;
 	private int intindexcreature;
+	private int intindexhero;
+	private boolean bool;
 	
 	public GamePlay(GameBoard carte,  List<IHero> heros, List<ICreature> monsters, List<IPotion> potions, List<IPotion> superPotions){
 		this.carte=carte;
@@ -47,13 +47,13 @@ public class GamePlay implements InterfaceObservable, Runnable, GamePlayObservab
 					heros.get(i).hero(); 
 				}
 				if (rencontre(heros, monsters)){
-					setState("arena");
+						setState("arena");
 				}
 			}
 			if (gameState=="arena"){
-				if (tournament.finish(heros, monsters)){
-					setState("map");
-				}
+				/*/if (tournament.finish()){
+					
+				}/*/
 			}
 			
 			this.prevenirInterfaceObserver();
@@ -75,10 +75,10 @@ public class GamePlay implements InterfaceObservable, Runnable, GamePlayObservab
 		return inthero;
 	}
 	public int getintindexHero() {
-		return inthero;
+		return intindexhero;
 	}
 	public int getintindexCreature() {
-		return inthero;
+		return intindexcreature;
 	}
 	public List<ICreature> getCreature() {
 		return monsters;
@@ -112,19 +112,20 @@ public class GamePlay implements InterfaceObservable, Runnable, GamePlayObservab
 		}
 		prevenirInterfaceObserver();
 	}
-	// Rencontre
+	// rencontre
+	
 	public boolean rencontre(List<IHero> heros, List<ICreature> opponents){
 		bool = false;
 		for ( int j = 0 ; j < heros.size() ; j++) {
 			IHero hero = heros.get(j);
 			for (int i=0 ; i<opponents.size() ; i++){
 				ICreature creature = opponents.get(i);
-				if ( Math.sqrt( Math.pow(hero.getpositionX()- creature.getPositionX(),2)+ Math.pow(hero.getpositionY()- creature.getPositionY(),2) )<15){
+				if ( Math.sqrt(  Math.pow(hero.getpositionX()- creature.getPositionX(),2)+  Math.pow(hero.getpositionY()- creature.getPositionY(),2) )<15){
+					bool = true;
 					intindexhero=i;
 					intindexcreature=j;
-					bool = true;
 				}
-			}		
+		}
 		}
 		return bool;
 	}
@@ -152,14 +153,15 @@ public class GamePlay implements InterfaceObservable, Runnable, GamePlayObservab
 		this.observerList.add(obs);
 	}
 	public void prevenirInterfaceObserver() {
-		for(InterfaceObserver o : this.observerList){
-			o.draw();
+		for(InterfaceObserver obs : this.observerList){
+			obs.draw();
 		}
 	}
 	public void addgamePlayObserver(Observer obs) {
 		this.observer2List.add(obs);
-		
+		System.out.println("add maintenant la liste contient "+this.observer2List.size());
 	}
+	
 	public void prevenirgamePlayObserver() {
 		for(Observer obs : this.observer2List){
 			obs.controlState();

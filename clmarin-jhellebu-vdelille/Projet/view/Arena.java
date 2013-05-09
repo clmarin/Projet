@@ -17,6 +17,10 @@ import controller.listener.*;
 
 public class Arena extends JPanel implements InterfaceObserver{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JButton b1;
 	private JButton b2;
 	private JButton b3;
@@ -30,6 +34,7 @@ public class Arena extends JPanel implements InterfaceObserver{
 	private Game game;
 	
 	public Arena(Game game, Interface inter){
+		this.game = game;
 		List<IPotion> potions = game.getPotions();
 		List<IPotion> superPotions = game.getSuperPotions();
 		int size1 = potions.size();
@@ -62,35 +67,38 @@ public class Arena extends JPanel implements InterfaceObserver{
 	}
 	
 	public void draw() {
+		System.out.println("Arene se rafraichit");
 	    repaint();
 	}
 	
 	
 	public void paintComponent(Graphics g){
-		drawHero(g);
-		drawCreature(g);
 		g.drawImage(background, 0, 0, this.getWidth(), this.getHeight(), this);
 		Font font = new Font("Courier", Font.BOLD, 20); //(ecriture, bold/italic/..., taille police
 		g.setFont(font);
 		g.setColor(Color.red);
-		String PVCreature = String.valueOf(creature.getLife()); 
-		String PVHero = String.valueOf(hero.getLife());
-		g.drawString("Points de Vie :" + PVCreature, 5, 5);
-		g.drawString("points de Vie :" + PVHero, 165, 5);
+		//String PVCreature = String.valueOf(creature.getLife()); 
+		//String PVHero = String.valueOf(hero.getLife());
+		//g.drawString("Points de Vie :" + PVCreature, 5, 5);
+		//g.drawString("points de Vie :" + PVHero, 165, 5);
+		drawHero(g);
+		drawCreature(g);
 	}
 
 	public void drawCreature(Graphics g){
-		this.creature = rencontre.Monster(heros, creatures);
+		int indexCreature = game.getGamePlay().getintindexCreature();
+		this.creature = game.getGamePlay().getCreature().get(indexCreature);
 		Graphics2D g2d=(Graphics2D)g; 
 		g2d.drawImage(creature.getSkin(), 100, 150, this);
 				
 	}
 	
 	public void drawHero(Graphics g){
-		int ind = rencontre.indexHero(heros, creatures);
-		this.hero = heros.get(ind);
+		int indexHero = game.getGamePlay().getintindexHero();
+		this.hero = game.getGamePlay().getHero().get(indexHero);
 		Graphics2D g2d=(Graphics2D)g; 
 		g2d.drawImage(hero.getSkin(), 200, 150, this);
 	}
+	
 
 }

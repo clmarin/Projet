@@ -31,6 +31,10 @@ public class Game {
 	
 	public Game(){
 		gameOver = false;
+		this.heros = generateChallengers();
+		this.monsters = generateOpponents(1);
+		this.potions = generatePotions();
+		this.superPotions = generateSuperPotions();
 		}
 	
 
@@ -89,7 +93,7 @@ public class Game {
 		case 1:
 			List<ICreature> opponents = new ArrayList<ICreature>();
 			opponents.add(new Vermine(350,200));
-			opponents.add(new Vermine(200,100));
+			opponents.add(new Vermine(200,50));
 			opp = opponents;
 			break;
 		case 2:

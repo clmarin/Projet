@@ -25,6 +25,7 @@ public class MenuListener implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		if(arg0.getSource() == b2){
 			game.setLevel(1);
+			game.getGamePlay().addgamePlayObserver(controller.Main.main); 
 			inter.ConstructGame();
 			inter.changePanel("GAMEPLAY");
 		}

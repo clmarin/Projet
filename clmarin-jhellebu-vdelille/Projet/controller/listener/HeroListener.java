@@ -14,7 +14,7 @@ public class HeroListener implements KeyListener {
 	private BoardGame boardgame;
 	private GameBoard carte; 
 	private int inthero;
-	//private Rencontre renc;
+	private Rencontre renc;
 	//private List<IHero> heros;
 	//private List<ICreature> creatures;
 	
@@ -26,6 +26,13 @@ public class HeroListener implements KeyListener {
 	}
 	
 	public void keyPressed(KeyEvent touche) {
+		/*/List<IHero> heros = game.getHeros();
+		List<ICreature> creatures = game.getCreatures();
+		if (renc.rencontre(heros, creatures)){
+			inter.changePanel("ARENA");
+			gamePlay.setState("arena");
+		}/*/
+		
 		inthero = gamePlay.getintHero();
 		switch(touche.getKeyCode()) {
 		case KeyEvent.VK_ESCAPE:
@@ -48,7 +55,7 @@ public class HeroListener implements KeyListener {
 			break;
 		//HERO
 		case KeyEvent.VK_RIGHT:
-			gamePlay.getHero().get(inthero).changePositionX(1); 
+			gamePlay.getHero().get(inthero).varPosXX(1); 
 			break;
 		case KeyEvent.VK_LEFT:
 			// c'est pas trop lourd?
@@ -60,21 +67,21 @@ public class HeroListener implements KeyListener {
 					inter.
 				}
 		}/*/
-			gamePlay.getHero().get(inthero).changePositionX(-1); 
+			gamePlay.getHero().get(inthero).varPosXX(-1); 
 			break;
 		case KeyEvent.VK_UP:
-			gamePlay.getHero().get(inthero).changePositionY(-1); 
+			gamePlay.getHero().get(inthero).varPosY(-1); 
 			break;
 		case KeyEvent.VK_DOWN:
-			gamePlay.getHero().get(inthero).changePositionY(1);
+			gamePlay.getHero().get(inthero).varPosY(1);
 			break;
 		//}
 		}
 }
 
 	public void keyReleased(KeyEvent arg0) {
-		gamePlay.getHero().get(inthero).changePositionX(0); 
-		gamePlay.getHero().get(inthero).changePositionY(0);
+		gamePlay.getHero().get(inthero).varPosXX(0); 
+		gamePlay.getHero().get(inthero).varPosY(0);
 	}
 	
 

@@ -1,7 +1,8 @@
 package controller;
 
-// Faut bien un observer même si je ne sais pas comment l'utiliser
+// Observer de l'état du gamePlay
 public interface Observer {
 	void nextlevel();
+	void controlState();
 
 }

@@ -47,12 +47,6 @@ public class BoardGame extends JPanel implements InterfaceObserver{
 		this.gamePlay = gamePlay;
 		gamePlay.addInterfaceObserver(this);
 		this.setFocusable(true);
-		/*/
-		heros = gamePlay.getHero();
-		for (int i = 0; i< heros.size(); i++){
-			heros.get(i).addInterfaceObserver(this); 
-		}
-		/*/
 		
 	}
 	
@@ -86,8 +80,8 @@ public class BoardGame extends JPanel implements InterfaceObserver{
 			String wExp1 = String.valueOf(hero1.getWeaponExp());
 			String wExp2 = String.valueOf(hero2.getWeaponExp());
 			
-			g.drawString(name1, 160, 5);
-			g.drawString(name2, 240, 5);
+			g.drawString("name1", 160, 5);
+			g.drawString("name2", 240, 5);
 			g.drawString("points de Vie", 5, 25);
 			g.drawString(PV1, 160, 25);
 			g.drawString(PV2, 240, 25);

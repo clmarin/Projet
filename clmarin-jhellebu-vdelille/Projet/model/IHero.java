@@ -9,8 +9,8 @@ import view.InterfaceObserver;
 public interface IHero {
 	
 	//pour les changements
-	void changePositionX(int x);
-	void changePositionY(int y);
+	void varPosXX(int x);
+	void varPosY(int y);
 	void changeName(String name);
 	//public void addInterfaceObserver(InterfaceObserver obs); //pff
 	void hero();

@@ -35,11 +35,11 @@ public class Hero implements IHero{
 	
 // change les elements
 	
-	public void changePositionX(int dx) {
+	public void varPosXX(int dx) {
 			this.dx=dx;
 		}
 	
-	public void changePositionY(int dy) {
+	public void varPosY(int dy) {
 			this.dy= dy;
 	}
 	public void setPosXHero(int posX){

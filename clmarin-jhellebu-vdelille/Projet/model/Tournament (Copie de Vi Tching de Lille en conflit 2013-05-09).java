@@ -5,13 +5,11 @@ import java.util.Random;
 
 public class Tournament {
 	
-	private boolean esc = false;
+	private boolean esc;
 	private boolean finish;
 	private Random random;
 	private List<IPotion> potions;
 	private GamePlay gamePlay;
-	private Rencontre rencontre;
-	
 	
 		
 	public void fight (Hero hero, ICreature creature){
@@ -31,24 +29,19 @@ public class Tournament {
 		return esc;
 	}
 	
-	public boolean getEscape(){
-		return esc;
-	}
-	
 	
 	public List<IPotion> useItem(){
 		potions = gamePlay.getPotion();
 		return potions;
 	}
 	// ajouter les indexHero et indexCreature qqpart dans une autre classe
-	public boolean finish (List<IHero> challengers, List<ICreature> opponents){
-		int indexHero = rencontre.indexHero(challengers,  opponents);
-		int indexCreature = rencontre.indexCreature(challengers, opponents);
-		boolean escape = getEscape();
-		IHero challenger = rencontre.Hero(challengers, opponents);
-		ICreature opponent = rencontre.Monster(challengers, opponents);
+	public boolean finish (List<IHero> challengers, Hero challenger, List<ICreature> opponents, ICreature opponent, boolean escape){
+		
+		int indexHero = Rencontre.getindexHero();
+		int indexCreature = Rencontre.getindexCreature();
+		this.esc = escape;
 		finish = false;
-		if (!challenger.isAlive() || escape || !opponent.isAlive()){
+		if (!challenger.isAlive() || esc || !opponent.isAlive()){
 			if (!challenger.isAlive()){
 				challengers.remove(indexHero);
 			}
@@ -57,8 +50,11 @@ public class Tournament {
 			}
 			finish = true;
 	    }
+	    
 		return finish;
+		
 	}
+	
 }
 
 
